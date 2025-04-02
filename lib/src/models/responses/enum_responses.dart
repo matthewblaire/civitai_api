@@ -16,7 +16,7 @@ class GetEnumsResponse {
         (value as List<dynamic>).map((e) => e as String).toList(),
       ),
     );
-    
+
     return GetEnumsResponse(
       enums: enums,
     );

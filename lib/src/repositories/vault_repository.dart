@@ -5,7 +5,7 @@ import '../utils/retry_policy.dart';
 class VaultRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -24,7 +24,7 @@ class VaultRepository {
         '/v1/vault/all',
         requiresAuth: true,
       );
-      
+
       return (json['items'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList();
@@ -42,7 +42,7 @@ class VaultRepository {
         queryParams: {'versionId': versionId},
         requiresAuth: true,
       );
-      
+
       return json['inVault'] as bool;
     });
   }
@@ -58,7 +58,7 @@ class VaultRepository {
         queryParams: {'versionId': versionId},
         requiresAuth: true,
       );
-      
+
       return json['inVault'] as bool;
     });
   }

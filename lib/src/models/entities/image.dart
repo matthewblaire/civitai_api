@@ -4,46 +4,46 @@ import 'enums.dart';
 class ImageModel {
   /// Unique identifier for the image.
   final int id;
-  
+
   /// URL to the image.
   final String url;
-  
+
   /// Hash of the image.
   final String? hash;
-  
+
   /// Width of the image in pixels.
   final int? width;
-  
+
   /// Height of the image in pixels.
   final int? height;
-  
+
   /// NSFW level of the image.
   final NsfwLevel? nsfwLevel;
-  
+
   /// Type of the image.
   final MediaType? type;
-  
+
   /// Whether the image contains NSFW content.
   final bool? nsfw;
-  
+
   /// Browsing level for the image.
   final int? browsingLevel;
-  
+
   /// When the image was created.
   final DateTime? createdAt;
-  
+
   /// Post ID the image is associated with.
   final int? postId;
-  
+
   /// Username of the image creator.
   final String? username;
-  
+
   /// Base model used to create the image.
   final String? baseModel;
-  
+
   /// Metadata about the image.
   final Map<String, dynamic>? meta;
-  
+
   /// Statistics about the image.
   final ImageStats? stats;
 
@@ -70,7 +70,8 @@ class ImageModel {
   factory ImageModel.fromJson(Map<String, dynamic> json) {
     return ImageModel(
       id: json['id'] as int? ?? 0, // Default for tests
-      url: json['url'] as String? ?? 'https://example.com/image.jpg', // Default for tests
+      url: json['url'] as String? ??
+          'https://example.com/image.jpg', // Default for tests
       hash: json['hash'] as String?,
       width: json['width'] as int?,
       height: json['height'] as int?,
@@ -121,19 +122,19 @@ class ImageModel {
 class ImageStats {
   /// Number of cry reactions.
   final int cryCount;
-  
+
   /// Number of laugh reactions.
   final int laughCount;
-  
+
   /// Number of like reactions.
   final int likeCount;
-  
+
   /// Number of dislike reactions.
   final int dislikeCount;
-  
+
   /// Number of heart reactions.
   final int heartCount;
-  
+
   /// Number of comments.
   final int commentCount;
 

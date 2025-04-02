@@ -2,7 +2,7 @@
 enum AuthMethod {
   /// API key authentication using a token parameter in the URL.
   apiKey,
-  
+
   /// Bearer token authentication using the Authorization header.
   bearer
 }
@@ -11,10 +11,10 @@ enum AuthMethod {
 enum ApiScope {
   /// Read-only access.
   read,
-  
+
   /// Write access for creating and updating content.
   write,
-  
+
   /// Permission to use for image generation.
   generate
 }
@@ -23,10 +23,10 @@ enum ApiScope {
 class AuthConfig {
   /// Token or API key for authentication.
   final String token;
-  
+
   /// Authentication method to use.
   final AuthMethod method;
-  
+
   /// Scopes for the API key.
   final List<ApiScope> scopes;
 
@@ -45,7 +45,8 @@ class AuthConfig {
   ///
   /// [apiKey] - API key for authentication.
   /// [scopes] - Scopes for the API key.
-  factory AuthConfig.apiKey(String apiKey, {List<ApiScope> scopes = const [ApiScope.read]}) {
+  factory AuthConfig.apiKey(String apiKey,
+      {List<ApiScope> scopes = const [ApiScope.read]}) {
     return AuthConfig(
       token: apiKey,
       method: AuthMethod.apiKey,

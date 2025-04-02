@@ -6,7 +6,7 @@ import '../utils/retry_policy.dart';
 class UploadRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -25,7 +25,7 @@ class UploadRepository {
         '/v1/image-upload',
         requiresAuth: true,
       );
-      
+
       return ImageUploadResponse.fromJson(json);
     });
   }
@@ -43,7 +43,7 @@ class UploadRepository {
         body: params.toJson(),
         requiresAuth: true,
       );
-      
+
       return MultipartUploadResponse.fromJson(json);
     });
   }

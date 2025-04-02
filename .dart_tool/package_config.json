@@ -302,10 +302,10 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2025-04-02T10:13:18.152167Z",
+  "generated": "2025-04-02T10:20:54.163833Z",
   "generator": "pub",
   "generatorVersion": "3.7.2",
-  "flutterRoot": "file:///home/matthewb/flutter",
+  "flutterRoot": "file:///home/matthewb/development/flutter",
   "flutterVersion": "3.29.2",
   "pubCache": "file:///home/matthewb/.pub-cache"
 }

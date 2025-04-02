@@ -2,7 +2,7 @@
 class CivitaiException implements Exception {
   /// Human-readable error message.
   final String message;
-  
+
   /// Original error data from the API, if available.
   final Map<String, dynamic>? data;
 
@@ -19,7 +19,8 @@ class CivitaiClientException extends CivitaiException {
   final int statusCode;
 
   /// Creates a new client exception with the given [message] and [statusCode].
-  CivitaiClientException(String message, this.statusCode, [Map<String, dynamic>? data])
+  CivitaiClientException(String message, this.statusCode,
+      [Map<String, dynamic>? data])
       : super(message, data);
 
   @override
@@ -69,7 +70,8 @@ class CivitaiApiException extends CivitaiException {
   final int statusCode;
 
   /// Creates a new API exception with the given [message] and [statusCode].
-  CivitaiApiException(String message, this.statusCode, [Map<String, dynamic>? data])
+  CivitaiApiException(String message, this.statusCode,
+      [Map<String, dynamic>? data])
       : super(message, data);
 
   @override
@@ -139,7 +141,8 @@ class CivitaiRateLimitException extends CivitaiClientException {
 /// Exception thrown when the API response doesn't match the expected format.
 class CivitaiUnexpectedResponseException extends CivitaiException {
   /// Creates a new unexpected response exception with the given [message].
-  CivitaiUnexpectedResponseException(String message, [Map<String, dynamic>? data])
+  CivitaiUnexpectedResponseException(String message,
+      [Map<String, dynamic>? data])
       : super(message, data);
 
   @override

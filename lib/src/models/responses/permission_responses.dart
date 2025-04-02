@@ -11,7 +11,7 @@ class CheckPermissionsResponse {
   /// Creates a check permissions response from a JSON map.
   factory CheckPermissionsResponse.fromJson(Map<String, dynamic> json) {
     final permissions = json.map((key, value) => MapEntry(key, value as bool));
-    
+
     return CheckPermissionsResponse(
       permissions: permissions,
     );

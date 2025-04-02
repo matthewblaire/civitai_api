@@ -2,7 +2,7 @@
 class ImageUploadResponse {
   /// The ID of the uploaded image.
   final int id;
-  
+
   /// The upload URL for the image.
   final String uploadURL;
 
@@ -33,13 +33,13 @@ class ImageUploadResponse {
 class MultipartUploadResponse {
   /// The upload ID for the multipart upload.
   final String uploadId;
-  
+
   /// The key for the uploaded file.
   final String key;
-  
+
   /// The S3 upload URL.
   final String uploadURL;
-  
+
   /// The parts to upload.
   final List<MultipartUploadPart> parts;
 
@@ -78,10 +78,10 @@ class MultipartUploadResponse {
 class MultipartUploadPart {
   /// The upload URL for this part.
   final String url;
-  
+
   /// The part number.
   final int partNumber;
-  
+
   /// The part size in bytes.
   final int size;
 

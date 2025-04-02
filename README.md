@@ -163,7 +163,7 @@ final civitai = CivitaiApi(
 Configure retry behavior for transient errors:
 
 ```dart
-import 'package:civitai_api/src/utils/retry_policy.dart';
+import 'package:civitai_api/civitai_api.dart';
 
 final retryConfig = RetryConfig(
   maxRetries: 5,
@@ -172,6 +172,7 @@ final retryConfig = RetryConfig(
 );
 
 // Use custom retry policy for a specific repository
+final apiClient = ApiClient(baseUrl: 'https://civitai.com/api');
 final modelVersionsWithRetry = ModelVersionsRepository(
   apiClient,
   retryPolicy: RetryPolicy(config: retryConfig),

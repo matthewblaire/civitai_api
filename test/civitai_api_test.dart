@@ -30,7 +30,7 @@ void main() {
           'nextPage': null
         }
       };
-      
+
       mockClient.enqueue(
         body: jsonEncode(mockResponse),
         statusCode: 200,
@@ -56,7 +56,7 @@ void main() {
           'nextPage': null
         }
       };
-      
+
       mockClient.enqueue(
         body: jsonEncode(mockResponse),
         statusCode: 200,
@@ -81,15 +81,21 @@ void main() {
       const retryPolicy = RetryPolicy(
         config: RetryConfig(maxRetries: 2),
       );
-      
+
       // Test that the config is correct
       expect(retryPolicy.config.maxRetries, 2);
-      
+
       // Verify that it can retry server errors
-      expect(retryPolicy.config.retryableExceptions.contains(CivitaiServerException), true);
-      
+      expect(
+          retryPolicy.config.retryableExceptions
+              .contains(CivitaiServerException),
+          true);
+
       // Verify that it won't retry client errors (not in the list)
-      expect(retryPolicy.config.retryableExceptions.contains(CivitaiBadRequestException), false);
+      expect(
+          retryPolicy.config.retryableExceptions
+              .contains(CivitaiBadRequestException),
+          false);
     });
   });
 }

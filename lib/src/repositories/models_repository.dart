@@ -6,7 +6,7 @@ import '../utils/retry_policy.dart';
 class ModelsRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -22,13 +22,13 @@ class ModelsRepository {
   Future<GetModelsResponse> getModels([GetModelsParams? params]) async {
     return _retryPolicy.execute(() async {
       final queryParams = params?.toQueryParameters() ?? {};
-      
+
       final json = await _apiClient.get(
         '/v1/models',
         queryParams: queryParams,
         requiresAuth: params?.favorites == true || params?.hidden == true,
       );
-      
+
       return GetModelsResponse.fromJson(json);
     });
   }

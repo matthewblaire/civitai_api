@@ -57,17 +57,19 @@ class GetModelVersionsByHashIdsResponse {
   });
 
   /// Creates a get model versions by hash IDs response from a JSON map.
-  factory GetModelVersionsByHashIdsResponse.fromJson(Map<String, dynamic> json) {
+  factory GetModelVersionsByHashIdsResponse.fromJson(
+      Map<String, dynamic> json) {
     final modelVersions = <String, ModelVersion?>{};
-    
+
     json.forEach((key, value) {
       if (value != null) {
-        modelVersions[key] = ModelVersion.fromJson(value as Map<String, dynamic>);
+        modelVersions[key] =
+            ModelVersion.fromJson(value as Map<String, dynamic>);
       } else {
         modelVersions[key] = null;
       }
     });
-    
+
     return GetModelVersionsByHashIdsResponse(
       modelVersions: modelVersions,
     );

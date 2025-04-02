@@ -7,7 +7,7 @@ import '../utils/retry_policy.dart';
 class PermissionsRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -35,16 +35,16 @@ class PermissionsRepository {
         'entityIds': entityIds.join(','),
         'permission': permission.toString().split('.').last,
       };
-      
+
       if (userId != null) {
         params['userId'] = userId;
       }
-      
+
       final json = await _apiClient.get(
         '/v1/permissions/check',
         queryParams: params,
       );
-      
+
       return CheckPermissionsResponse.fromJson(json);
     });
   }

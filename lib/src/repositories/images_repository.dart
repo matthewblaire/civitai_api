@@ -6,7 +6,7 @@ import '../utils/retry_policy.dart';
 class ImagesRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -22,12 +22,12 @@ class ImagesRepository {
   Future<GetImagesResponse> getImages([GetImagesParams? params]) async {
     return _retryPolicy.execute(() async {
       final queryParams = params?.toQueryParameters() ?? {};
-      
+
       final json = await _apiClient.get(
         '/v1/images',
         queryParams: queryParams,
       );
-      
+
       return GetImagesResponse.fromJson(json);
     });
   }

@@ -6,64 +6,64 @@ import 'image.dart';
 class ModelVersion {
   /// Unique identifier for the model version.
   final int id;
-  
+
   /// Model ID this version belongs to.
   final int? modelId;
-  
+
   /// Name of this version.
   final String name;
-  
+
   /// Base model this version is built for.
   final BaseModel baseModel;
-  
+
   /// Description of this version.
   final String? description;
-  
+
   /// Words the model was trained on.
   final List<String> trainedWords;
-  
+
   /// Whether this version can be used for image generation.
   final bool supportsGeneration;
-  
+
   /// Files associated with this version.
   final List<ModelFile> files;
-  
+
   /// Images showcasing this version.
   final List<ImageModel> images;
-  
+
   /// URL to download this version's primary file.
   final String? downloadUrl;
-  
+
   /// When this version was created.
   final DateTime? createdAt;
-  
+
   /// When this version was published.
   final DateTime? publishedAt;
-  
+
   /// When early access for this version ends.
   final DateTime? earlyAccessTimeFrame;
-  
+
   /// Status of this version.
   final String? status;
-  
+
   /// Availability of this version.
   final String? availability;
-  
+
   /// Skip value for CLIP.
   final int? clipSkip;
-  
+
   /// Hash values for this version.
   final Map<String, String?>? hashes;
-  
+
   /// Whether authentication is required to download this version.
   final bool? requireAuth;
-  
+
   /// Whether permission checks are needed for this version.
   final bool? checkPermission;
-  
+
   /// Whether this version is featured.
   final bool? isFeatured;
-  
+
   /// Whether this version is a minor update.
   final bool? minor;
 

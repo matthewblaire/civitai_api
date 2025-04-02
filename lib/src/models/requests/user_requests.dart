@@ -4,10 +4,10 @@ import '../../utils/pagination.dart';
 class GetUsersParams extends PaginationParams {
   /// Filter by user IDs.
   final List<int>? ids;
-  
+
   /// Filter by username.
   final String? username;
-  
+
   /// Search query for users.
   final String? query;
 
@@ -24,14 +24,14 @@ class GetUsersParams extends PaginationParams {
   @override
   Map<String, dynamic> toQueryParameters() {
     final params = super.toQueryParameters();
-    
+
     if (ids != null && ids!.isNotEmpty) {
       params['ids'] = ids!.join(',');
     }
-    
+
     if (username != null) params['username'] = username;
     if (query != null) params['query'] = query;
-    
+
     return params;
   }
 }

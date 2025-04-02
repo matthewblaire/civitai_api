@@ -6,7 +6,7 @@ import '../utils/retry_policy.dart';
 class ModelVersionsRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -36,12 +36,12 @@ class ModelVersionsRepository {
   ]) async {
     return _retryPolicy.execute(() async {
       final queryParams = params?.toQueryParameters() ?? {};
-      
+
       final json = await _apiClient.get(
         '/v1/model-versions/by-hash/$hash',
         queryParams: queryParams,
       );
-      
+
       return GetModelVersionByHashResponse.fromJson(json);
     });
   }
@@ -57,7 +57,7 @@ class ModelVersionsRepository {
         '/v1/model-versions/by-hash/ids',
         queryParams: params.toQueryParameters(),
       );
-      
+
       return GetModelVersionsByHashIdsResponse.fromJson(json);
     });
   }

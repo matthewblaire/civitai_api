@@ -2,16 +2,16 @@
 class Creator {
   /// Username of the creator.
   final String username;
-  
+
   /// URL to the creator's profile image.
   final String? image;
-  
+
   /// Unique identifier for the creator.
   final int? id;
-  
+
   /// Count of models uploaded by the creator.
   final int? modelCount;
-  
+
   /// Link to the creator's models.
   final String? link;
 

@@ -7,7 +7,7 @@ import '../utils/retry_policy.dart';
 class CreatorsRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -23,12 +23,12 @@ class CreatorsRepository {
   Future<GetCreatorsResponse> getCreators([PaginationParams? params]) async {
     return _retryPolicy.execute(() async {
       final queryParams = params?.toQueryParameters() ?? {};
-      
+
       final json = await _apiClient.get(
         '/v1/creators',
         queryParams: queryParams,
       );
-      
+
       return GetCreatorsResponse.fromJson(json);
     });
   }

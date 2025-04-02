@@ -2,13 +2,13 @@
 class PaginationMetadata {
   /// The current page number, if using page-based pagination.
   final int? currentPage;
-  
+
   /// The size of each page, if using page-based pagination.
   final int? pageSize;
-  
+
   /// The cursor for the next page, if using cursor-based pagination.
   final String? nextCursor;
-  
+
   /// URL for the next page, if available.
   final String? nextPage;
 
@@ -57,7 +57,7 @@ class PaginationMetadata {
 class PaginatedResponse<T> {
   /// The list of items in the current page.
   final List<T> items;
-  
+
   /// Metadata about the pagination state.
   final PaginationMetadata metadata;
 
@@ -82,10 +82,10 @@ class PaginatedResponse<T> {
 class PaginationParams {
   /// Maximum number of items to return per page.
   final int? limit;
-  
+
   /// Page number to return, if using page-based pagination.
   final int? page;
-  
+
   /// Cursor for the next page, if using cursor-based pagination.
   final String? cursor;
 

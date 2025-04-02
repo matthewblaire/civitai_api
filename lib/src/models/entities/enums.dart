@@ -2,40 +2,40 @@
 enum ModelType {
   /// Checkpoint model.
   checkpoint,
-  
+
   /// Textual Inversion embedding.
   textualInversion,
-  
+
   /// Hypernetwork.
   hypernetwork,
-  
+
   /// Aesthetic Gradient.
   aestheticGradient,
-  
+
   /// LoRA (Low-Rank Adaptation).
   lora,
-  
+
   /// LoCon (Low-Rank Convolution).
   locon,
-  
+
   /// Controlnet model.
   controlnet,
-  
+
   /// VAE (Variational Auto-Encoder).
   vae,
-  
+
   /// Upscaler.
   upscaler,
-  
+
   /// Motion module.
   motionModule,
-  
+
   /// Pose.
   pose,
-  
+
   /// Wildcards.
   wildcards,
-  
+
   /// Other type of model.
   other;
 
@@ -55,28 +55,28 @@ enum ModelType {
 enum BaseModel {
   /// Stable Diffusion 1.4
   sd14,
-  
+
   /// Stable Diffusion 1.5
   sd15,
-  
+
   /// Stable Diffusion 2.0
   sd20,
-  
+
   /// Stable Diffusion 2.1
   sd21,
-  
+
   /// Stable Diffusion XL
   sdxl,
-  
+
   /// Stable Diffusion XL Turbo
   sdxlTurbo,
-  
+
   /// Stable Diffusion XL Lightning
   sdxlLightning,
-  
+
   /// Stable Diffusion 3
   sd3,
-  
+
   /// Other base model
   other;
 
@@ -141,19 +141,19 @@ enum BaseModel {
 enum ModelSort {
   /// Sort by highest rating.
   highestRated,
-  
+
   /// Sort by most downloaded.
   mostDownloaded,
-  
+
   /// Sort by newest.
   newest,
-  
+
   /// Sort by most liked.
   mostLiked,
-  
+
   /// Sort by most discussed.
   mostDiscussed,
-  
+
   /// Sort by most collected.
   mostCollected;
 
@@ -165,10 +165,10 @@ enum ModelSort {
 enum ImageSort {
   /// Sort by most reactions.
   mostReactions,
-  
+
   /// Sort by newest.
   newest,
-  
+
   /// Sort by oldest.
   oldest;
 
@@ -180,16 +180,16 @@ enum ImageSort {
 enum MetricTimeframe {
   /// All time.
   allTime,
-  
+
   /// Year.
   year,
-  
+
   /// Month.
   month,
-  
+
   /// Week.
   week,
-  
+
   /// Day.
   day;
 
@@ -201,34 +201,34 @@ enum MetricTimeframe {
 enum FileType {
   /// Model file.
   model,
-  
+
   /// Pruned model file.
   pruned,
-  
+
   /// Checkpoint file.
   checkpoint,
-  
+
   /// Config file.
   config,
-  
+
   /// VAE file.
   vae,
-  
+
   /// Archive (zip, tar, etc.) file.
   archive,
-  
+
   /// Text file.
   text,
-  
+
   /// Source code file.
   code,
-  
+
   /// Generic training data file.
   trainingData,
-  
+
   /// Example images.
   images,
-  
+
   /// Unknown file type.
   unknown;
 
@@ -248,16 +248,16 @@ enum FileType {
 enum NsfwLevel {
   /// None - Safe for work.
   none,
-  
+
   /// Soft - Mild suggestive content.
   soft,
-  
+
   /// Mature - Strong suggestive content.
   mature,
-  
+
   /// X - Explicit adult content.
   x,
-  
+
   /// Blocked - Content that violates terms.
   blocked;
 
@@ -265,7 +265,8 @@ enum NsfwLevel {
   static NsfwLevel fromValue(dynamic value) {
     if (value is String) {
       return NsfwLevel.values.firstWhere(
-        (e) => e.toString().split('.').last.toLowerCase() == value.toLowerCase(),
+        (e) =>
+            e.toString().split('.').last.toLowerCase() == value.toLowerCase(),
         orElse: () => NsfwLevel.none,
       );
     } else if (value is int) {
@@ -278,7 +279,7 @@ enum NsfwLevel {
 
   /// Converts this enum value to a string for API requests.
   String toJson() => toString().split('.').last;
-  
+
   /// Converts this enum value to an integer for API requests.
   int toInt() => index;
 }
@@ -287,10 +288,10 @@ enum NsfwLevel {
 enum MediaType {
   /// Image.
   image,
-  
+
   /// Video.
   video,
-  
+
   /// Animation.
   animation;
 
@@ -310,13 +311,13 @@ enum MediaType {
 enum ModelStatus {
   /// Published and visible.
   published,
-  
+
   /// Unpublished/draft.
   unpublished,
-  
+
   /// Deleted.
   deleted,
-  
+
   /// TOS violation.
   tosViolation;
 
@@ -336,13 +337,13 @@ enum ModelStatus {
 enum PermissionType {
   /// Permission to view/download.
   view,
-  
+
   /// Permission to download.
   download,
-  
+
   /// Permission to use for image generation.
   generate,
-  
+
   /// Permission to use for training.
   train;
 
@@ -362,19 +363,19 @@ enum PermissionType {
 enum EntityType {
   /// Model.
   model,
-  
+
   /// Model version.
   modelVersion,
-  
+
   /// Image.
   image,
-  
+
   /// Post.
   post,
-  
+
   /// Article.
   article,
-  
+
   /// Collection.
   collection;
 

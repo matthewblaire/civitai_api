@@ -2,10 +2,10 @@
 class CreateMultipartUploadParams {
   /// The MIME type of the file.
   final String? mimeType;
-  
+
   /// The name of the file.
   final String? filename;
-  
+
   /// The size of the file in bytes.
   final int size;
 

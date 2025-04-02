@@ -14,11 +14,11 @@ class GetImagesResponse extends PaginatedResponse<ImageModel> {
     final items = (json['items'] as List<dynamic>)
         .map((e) => ImageModel.fromJson(e as Map<String, dynamic>))
         .toList();
-    
+
     final metadata = PaginationMetadata.fromJson(
       json['metadata'] as Map<String, dynamic>,
     );
-    
+
     return GetImagesResponse(
       items: items,
       metadata: metadata,

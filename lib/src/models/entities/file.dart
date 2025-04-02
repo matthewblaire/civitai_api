@@ -4,25 +4,25 @@ import 'enums.dart';
 class ModelFile {
   /// Unique identifier for the file.
   final int id;
-  
+
   /// Name of the file.
   final String name;
-  
+
   /// Size of the file in kilobytes.
   final double sizeKB;
-  
+
   /// Type of the file.
   final FileType type;
-  
+
   /// Hash values for the file.
   final Map<String, String>? hashes;
-  
+
   /// URL to download the file.
   final String? downloadUrl;
-  
+
   /// Whether this is the primary file for the model version.
   final bool? primary;
-  
+
   /// Metadata about the file.
   final Map<String, dynamic>? metadata;
 
@@ -44,7 +44,7 @@ class ModelFile {
       id: json['id'] as int? ?? 0, // Default to 0 for tests
       name: json['name'] as String? ?? 'Unknown file', // Default for tests
       sizeKB: (json['sizeKB'] as num?)?.toDouble() ?? 0.0, // Default for tests
-      type: json['type'] != null 
+      type: json['type'] != null
           ? FileType.fromString(json['type'] as String)
           : FileType.unknown, // Default for tests
       hashes: json['hashes'] != null

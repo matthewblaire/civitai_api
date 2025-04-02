@@ -1,12 +1,7 @@
 import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
 
-import 'models/models.dart';
-import 'repositories/repositories.dart';
 import 'api/api.dart';
-import 'exceptions/exceptions.dart';
-import 'utils/utils.dart';
+import 'repositories/repositories.dart';
 import 'utils/authentication.dart';
 
 /// Main entry point for the CivitAI API client.
@@ -21,16 +16,16 @@ import 'utils/authentication.dart';
 class CivitaiApi {
   /// The base URL for the CivitAI API.
   final String baseUrl;
-  
+
   /// HTTP client used for all API requests.
   final http.Client _httpClient;
-  
+
   /// Authentication configuration for the API.
   final AuthConfig? authConfig;
-  
+
   /// Whether to follow redirects automatically.
   final bool followRedirects;
-  
+
   /// Request timeout duration.
   final Duration timeout;
 
@@ -66,9 +61,9 @@ class CivitaiApi {
     this.timeout = const Duration(seconds: 30),
   }) : _httpClient = httpClient ?? http.Client() {
     // Use authConfig if provided, otherwise create from apiKey if available
-    final effectiveAuthConfig = authConfig ?? 
-        (apiKey != null ? AuthConfig.apiKey(apiKey) : null);
-    
+    final effectiveAuthConfig =
+        authConfig ?? (apiKey != null ? AuthConfig.apiKey(apiKey) : null);
+
     final apiClient = ApiClient(
       baseUrl: baseUrl,
       httpClient: _httpClient,

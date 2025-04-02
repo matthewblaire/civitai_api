@@ -2,31 +2,31 @@
 class User {
   /// Unique identifier for the user.
   final int id;
-  
+
   /// Username of the user.
   final String? username;
-  
+
   /// URL to the user's profile image.
   final String? image;
-  
+
   /// User's subscription tier.
   final String? tier;
-  
+
   /// User's status.
   final String? status;
-  
+
   /// Whether the user is a moderator.
   final bool? isModerator;
-  
+
   /// Date when the user was created.
   final DateTime? createdAt;
-  
+
   /// User's display name.
   final String? displayName;
-  
+
   /// User's file preferences.
   final UserFilePreferences? filePreferences;
-  
+
   /// Whether the user is currently banned.
   final bool? banned;
 
@@ -98,7 +98,7 @@ class User {
 class UserFilePreferences {
   /// Preferred image format.
   final String? imageFormat;
-  
+
   /// Preferred archive format.
   final String? archiveFormat;
 

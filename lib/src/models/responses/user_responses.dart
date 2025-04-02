@@ -14,11 +14,11 @@ class GetUsersResponse extends PaginatedResponse<User> {
     final items = (json['items'] as List<dynamic>)
         .map((e) => User.fromJson(e as Map<String, dynamic>))
         .toList();
-    
+
     final metadata = json['metadata'] != null
         ? PaginationMetadata.fromJson(json['metadata'] as Map<String, dynamic>)
         : const PaginationMetadata();
-    
+
     return GetUsersResponse(
       items: items,
       metadata: metadata,

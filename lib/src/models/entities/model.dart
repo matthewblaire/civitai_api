@@ -13,49 +13,49 @@ class Model {
 
   /// Description of the model.
   final String? description;
-  
+
   /// Type of the model.
   final ModelType type;
-  
+
   /// Whether the model contains NSFW content.
   final bool nsfw;
-  
+
   /// Whether the model is based on a real person (person of interest).
   final bool poi;
-  
+
   /// Additional mode information.
   final String? mode;
-  
+
   /// Information about the creator of the model.
   final CreatorInfo? creator;
-  
+
   /// Tags associated with the model.
   final List<String> tags;
-  
+
   /// List of model versions.
   final List<ModelVersion> modelVersions;
-  
+
   /// Statistics about the model.
   final ModelStats? stats;
-  
+
   /// URL for the model's main image.
   final String? imageUrl;
-  
+
   /// Date when the model was created.
   final DateTime? createdAt;
-  
+
   /// Date when the model was last updated.
   final DateTime? updatedAt;
-  
+
   /// Date when the model was published.
   final DateTime? publishedAt;
-  
+
   /// Current status of the model.
   final ModelStatus? status;
-  
+
   /// Whether early access is enabled for this model.
   final bool? earlyAccessEnabled;
-  
+
   /// URL to download the model.
   final String? downloadUrl;
 
@@ -87,25 +87,24 @@ class Model {
       id: json['id'] as int? ?? 0, // Default to 0 for tests
       name: json['name'] as String? ?? 'Unknown model', // Default for tests
       description: json['description'] as String?,
-      type: json['type'] != null 
+      type: json['type'] != null
           ? ModelType.fromString(json['type'] as String)
           : ModelType.other, // Default for tests
       nsfw: json['nsfw'] as bool? ?? false, // Default for tests
       poi: json['poi'] as bool? ?? false, // Default for tests
       mode: json['mode'] as String?,
-      creator: json['creator'] != null 
-          ? CreatorInfo.fromJson(json['creator'] as Map<String, dynamic>) 
+      creator: json['creator'] != null
+          ? CreatorInfo.fromJson(json['creator'] as Map<String, dynamic>)
           : null,
-      tags: (json['tags'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          [], // Default to empty list for tests
+      tags:
+          (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+              [], // Default to empty list for tests
       modelVersions: (json['modelVersions'] as List<dynamic>?)
               ?.map((e) => ModelVersion.fromJson(e as Map<String, dynamic>))
               .toList() ??
           [], // Default to empty list for tests
-      stats: json['stats'] != null 
-          ? ModelStats.fromJson(json['stats'] as Map<String, dynamic>) 
+      stats: json['stats'] != null
+          ? ModelStats.fromJson(json['stats'] as Map<String, dynamic>)
           : null,
       imageUrl: json['imageUrl'] as String?,
       createdAt: json['createdAt'] != null
@@ -117,8 +116,8 @@ class Model {
       publishedAt: json['publishedAt'] != null
           ? DateTime.parse(json['publishedAt'] as String)
           : null,
-      status: json['status'] != null 
-          ? ModelStatus.fromString(json['status'] as String) 
+      status: json['status'] != null
+          ? ModelStatus.fromString(json['status'] as String)
           : null,
       earlyAccessEnabled: json['earlyAccessEnabled'] as bool?,
       downloadUrl: json['downloadUrl'] as String?,
@@ -154,10 +153,10 @@ class Model {
 class CreatorInfo {
   /// Username of the creator.
   final String username;
-  
+
   /// URL to the creator's profile image.
   final String? image;
-  
+
   /// Unique identifier for the creator.
   final int? id;
 
@@ -191,19 +190,19 @@ class CreatorInfo {
 class ModelStats {
   /// Number of downloads.
   final int downloadCount;
-  
+
   /// Number of favorites.
   final int favoriteCount;
-  
+
   /// Number of comments.
   final int commentCount;
-  
+
   /// Average rating.
   final double? rating;
-  
+
   /// Number of ratings.
   final int? ratingCount;
-  
+
   /// Number of tips received.
   final int? tippedAmountCount;
 

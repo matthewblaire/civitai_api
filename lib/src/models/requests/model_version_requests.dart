@@ -4,7 +4,7 @@ import '../entities/enums.dart';
 class GetModelVersionByHashParams {
   /// The hash of the model file to search for.
   final String hash;
-  
+
   /// The type of hash used.
   final String? hashType;
 
@@ -17,9 +17,9 @@ class GetModelVersionByHashParams {
   /// Converts these parameters to a map for use in query parameters.
   Map<String, dynamic> toQueryParameters() {
     final params = <String, dynamic>{};
-    
+
     if (hashType != null) params['hashType'] = hashType;
-    
+
     return params;
   }
 }
@@ -28,7 +28,7 @@ class GetModelVersionByHashParams {
 class GetModelVersionsByHashIdsParams {
   /// The list of hashes to search for.
   final List<String> hashes;
-  
+
   /// The type of hash used.
   final String? hashType;
 
@@ -43,9 +43,9 @@ class GetModelVersionsByHashIdsParams {
     final params = <String, dynamic>{
       'hashes': hashes.join(','),
     };
-    
+
     if (hashType != null) params['hashType'] = hashType;
-    
+
     return params;
   }
 }

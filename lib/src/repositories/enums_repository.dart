@@ -6,7 +6,7 @@ import '../utils/retry_policy.dart';
 class EnumsRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 

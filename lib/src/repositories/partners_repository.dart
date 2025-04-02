@@ -5,7 +5,7 @@ import '../utils/retry_policy.dart';
 class PartnersRepository {
   /// API client for making requests.
   final ApiClient _apiClient;
-  
+
   /// Retry policy for transient errors.
   final RetryPolicy _retryPolicy;
 
@@ -24,7 +24,7 @@ class PartnersRepository {
         '/v1/partners/generate-token',
         requiresAuth: true,
       );
-      
+
       return json['token'] as String;
     });
   }
@@ -33,7 +33,7 @@ class PartnersRepository {
   Future<List<Map<String, dynamic>>> getSupportedModels() async {
     return _retryPolicy.execute(() async {
       final json = await _apiClient.get('/v1/partners/supported-models');
-      
+
       return (json['models'] as List<dynamic>)
           .map((e) => e as Map<String, dynamic>)
           .toList();

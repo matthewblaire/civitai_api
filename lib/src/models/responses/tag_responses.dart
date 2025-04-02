@@ -14,11 +14,11 @@ class GetTagsResponse extends PaginatedResponse<Tag> {
     final items = (json['items'] as List<dynamic>)
         .map((e) => Tag.fromJson(e as Map<String, dynamic>))
         .toList();
-    
+
     final metadata = PaginationMetadata.fromJson(
       json['metadata'] as Map<String, dynamic>,
     );
-    
+
     return GetTagsResponse(
       items: items,
       metadata: metadata,

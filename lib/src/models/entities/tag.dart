@@ -4,25 +4,25 @@ import 'enums.dart';
 class Tag {
   /// Unique identifier for the tag.
   final int id;
-  
+
   /// Name of the tag.
   final String name;
-  
+
   /// NSFW level of the tag.
   final NsfwLevel? nsfwLevel;
-  
+
   /// Count of models with this tag.
   final int? modelCount;
-  
+
   /// Count of images with this tag.
   final int? imageCount;
-  
+
   /// Count of posts with this tag.
   final int? postCount;
-  
+
   /// Whether this tag is a category.
   final bool? isCategory;
-  
+
   /// Link to search for this tag.
   final String? link;
 

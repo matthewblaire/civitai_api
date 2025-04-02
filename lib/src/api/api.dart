@@ -59,14 +59,13 @@ class ApiClient {
     ApiScope requiredScope = ApiScope.read,
   }) async {
     _validateAuth(requiresAuth, requiredScope);
-    
+
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
     try {
-      final response = await httpClient
-          .get(uri, headers: headers)
-          .timeout(timeout);
+      final response =
+          await httpClient.get(uri, headers: headers).timeout(timeout);
       return _handleResponse(response);
     } on TimeoutException {
       throw CivitaiTimeoutException(
@@ -93,7 +92,7 @@ class ApiClient {
     ApiScope requiredScope = ApiScope.write,
   }) async {
     _validateAuth(requiresAuth, requiredScope);
-    
+
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
@@ -131,7 +130,7 @@ class ApiClient {
     ApiScope requiredScope = ApiScope.write,
   }) async {
     _validateAuth(requiresAuth, requiredScope);
-    
+
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
@@ -167,14 +166,13 @@ class ApiClient {
     ApiScope requiredScope = ApiScope.write,
   }) async {
     _validateAuth(requiresAuth, requiredScope);
-    
+
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
     try {
-      final response = await httpClient
-          .delete(uri, headers: headers)
-          .timeout(timeout);
+      final response =
+          await httpClient.delete(uri, headers: headers).timeout(timeout);
       return _handleResponse(response);
     } on TimeoutException {
       throw CivitaiTimeoutException(
@@ -194,7 +192,7 @@ class ApiClient {
           'Authentication required but no authentication configuration provided',
         );
       }
-      
+
       if (!authConfig!.hasScope(requiredScope)) {
         throw CivitaiForbiddenException(
           'API key does not have the required scope: ${requiredScope.toString().split('.').last}',
@@ -206,17 +204,17 @@ class ApiClient {
   /// Builds the full URI for an API request.
   Uri _buildUri(String endpoint, Map<String, dynamic>? queryParams) {
     final Map<String, dynamic> params = {};
-    
+
     // Add API key to query parameters if available and using API key auth
     if (authConfig != null && authConfig!.method == AuthMethod.apiKey) {
       params['token'] = authConfig!.token;
     }
-    
+
     // Add additional query parameters if provided
     if (queryParams != null) {
       params.addAll(queryParams);
     }
-    
+
     // Convert all param values to strings
     final stringParams = params.map((key, value) {
       if (value is List) {
@@ -224,13 +222,14 @@ class ApiClient {
       }
       return MapEntry(key, value.toString());
     });
-    
+
     // Remove null and empty values
     final cleanParams = Map<String, String>.from(stringParams)
       ..removeWhere((key, value) => value.isEmpty);
-    
+
     final baseEndpoint = endpoint.startsWith('/') ? endpoint : '/$endpoint';
-    return Uri.parse('$baseUrl$baseEndpoint').replace(queryParameters: cleanParams.isNotEmpty ? cleanParams : null);
+    return Uri.parse('$baseUrl$baseEndpoint')
+        .replace(queryParameters: cleanParams.isNotEmpty ? cleanParams : null);
   }
 
   /// Builds the HTTP headers for an API request.
@@ -239,12 +238,14 @@ class ApiClient {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
-    
+
     // Add API key as Authorization header if using bearer auth
-    if (requiresAuth && authConfig != null && authConfig!.method == AuthMethod.bearer) {
+    if (requiresAuth &&
+        authConfig != null &&
+        authConfig!.method == AuthMethod.bearer) {
       headers['Authorization'] = 'Bearer ${authConfig!.token}';
     }
-    
+
     return headers;
   }
 
@@ -252,12 +253,12 @@ class ApiClient {
   Map<String, dynamic> _handleResponse(http.Response response) {
     final statusCode = response.statusCode;
     final body = response.body;
-    
+
     if (statusCode >= 200 && statusCode < 300) {
       if (body.isEmpty) {
         return {};
       }
-      
+
       try {
         return jsonDecode(body) as Map<String, dynamic>;
       } catch (e) {
@@ -274,7 +275,7 @@ class ApiClient {
   void _handleErrorResponse(int statusCode, String body) {
     Map<String, dynamic>? errorData;
     String message = 'Unknown error';
-    
+
     try {
       if (body.isNotEmpty) {
         errorData = jsonDecode(body) as Map<String, dynamic>;
