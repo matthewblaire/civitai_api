@@ -1,7 +1,9 @@
 # Changelog
 
 
-
+## 1.0.1
+Trying to get a perfect score:
+- removed dangling comments
 
 ## 1.0.1
 = updated readme

@@ -1,4 +1,3 @@
-/// Exports all model-related modules
 export 'entities/creator.dart';
 export 'entities/enums.dart';
 export 'entities/file.dart';
