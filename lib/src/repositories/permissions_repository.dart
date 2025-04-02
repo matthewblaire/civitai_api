@@ -1,6 +1,6 @@
 import '../api/api.dart';
 import '../models/models.dart';
-import '../utils/parameter_builder.dart';
+
 import '../utils/retry_policy.dart';
 
 /// Repository for interacting with the Permissions API.

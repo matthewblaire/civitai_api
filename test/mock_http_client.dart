@@ -1,7 +1,8 @@
-import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:civitai_api/civitai_api.dart';
+import 'package:http/http.dart' as http;
 
 /// Mock HTTP client for testing.
 class MockHttpClient extends http.BaseClient {
@@ -92,7 +93,7 @@ class MockHttpClient extends http.BaseClient {
   /// Test method for GET requests.
   Future<Map<String, dynamic>> getTest(String path) async {
     final uri = Uri.parse('https://civitai.com$path');
-    final response = await this.get(uri);
+    final response = await get(uri);
     if (response.body.isEmpty) {
       return {};
     }
@@ -109,7 +110,7 @@ class MockHttpClient extends http.BaseClient {
       client._checkScope(ApiScope.write);
     }
 
-    final response = await this.post(
+    final response = await post(
       uri,
       body: jsonEncode(body),
       headers: {'Content-Type': 'application/json'},
@@ -121,7 +122,7 @@ class MockHttpClient extends http.BaseClient {
   Future<Map<String, dynamic>> putTest(
       String path, Map<String, dynamic> body) async {
     final uri = Uri.parse('https://civitai.com$path');
-    final response = await this.put(
+    final response = await put(
       uri,
       body: jsonEncode(body),
       headers: {'Content-Type': 'application/json'},
@@ -132,7 +133,7 @@ class MockHttpClient extends http.BaseClient {
   /// Test method for DELETE requests.
   Future<Map<String, dynamic>> deleteTest(String path) async {
     final uri = Uri.parse('https://civitai.com$path');
-    final response = await this.delete(uri);
+    final response = await delete(uri);
     if (response.body.isEmpty) {
       return {};
     }

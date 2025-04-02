@@ -1,7 +1,5 @@
 import 'package:civitai_api/civitai_api.dart';
 
-import '../../utils/pagination.dart';
-import '../entities/enums.dart';
 
 /// Parameters for retrieving a list of images.
 class GetImagesParams extends PaginationParams {
@@ -90,8 +88,9 @@ class GetImagesParams extends PaginationParams {
     if (modelId != null) {
       params['modelId'] = modelId.toString();
     }
-    if (modelVersionId != null)
+    if (modelVersionId != null) {
       params['modelVersionId'] = modelVersionId.toString();
+    }
     if (imageId != null) params['imageId'] = imageId.toString();
     if (username != null) params['username'] = username;
     if (userId != null) params['userId'] = userId.toString();

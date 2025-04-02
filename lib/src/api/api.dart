@@ -1,24 +1,25 @@
 import 'dart:async';
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
+import '../exceptions/exceptions.dart';
+import '../utils/authentication.dart';
+import '../utils/utils.dart';
+
+export 'endpoints/content_api.dart';
+export 'endpoints/creators_api.dart';
+export 'endpoints/enums_api.dart';
+export 'endpoints/images_api.dart';
+export 'endpoints/model_versions_api.dart';
 // Export all necessary API-related classes
 export 'endpoints/models_api.dart';
-export 'endpoints/model_versions_api.dart';
-export 'endpoints/images_api.dart';
-export 'endpoints/users_api.dart';
-export 'endpoints/tags_api.dart';
-export 'endpoints/creators_api.dart';
-export 'endpoints/permissions_api.dart';
-export 'endpoints/upload_api.dart';
-export 'endpoints/content_api.dart';
-export 'endpoints/enums_api.dart';
 export 'endpoints/partners_api.dart';
+export 'endpoints/permissions_api.dart';
+export 'endpoints/tags_api.dart';
+export 'endpoints/upload_api.dart';
+export 'endpoints/users_api.dart';
 export 'endpoints/vault_api.dart';
-
-import '../exceptions/exceptions.dart';
-import '../utils/utils.dart';
-import '../utils/authentication.dart';
 
 /// Core API client handling HTTP requests to the CivitAI API.
 class ApiClient {
@@ -205,7 +206,7 @@ class ApiClient {
 
   /// Builds the full URI for an API request.
   Uri _buildUri(String endpoint, Map<String, dynamic>? queryParams) {
-    final Map<String, dynamic> params = {};
+    final params = {};
 
     // Add API key to query parameters if available and using API key auth
     if (authConfig != null && authConfig!.method == AuthMethod.apiKey) {
@@ -276,12 +277,12 @@ class ApiClient {
   /// Handles error responses and throws appropriate exceptions.
   void _handleErrorResponse(int statusCode, String body) {
     Map<String, dynamic>? errorData;
-    String message = 'Unknown error';
+    var message = 'Unknown error';
 
     try {
       if (body.isNotEmpty) {
         errorData = jsonDecode(body) as Map<String, dynamic>;
-        message = errorData?['message'] as String? ?? 'Unknown error';
+        message = errorData['message'] as String? ?? 'Unknown error';
       }
     } catch (_) {
       message = body.isNotEmpty ? body : 'Unknown error';

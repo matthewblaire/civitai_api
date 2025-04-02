@@ -1,7 +1,6 @@
 import 'enums.dart';
 import 'model_version.dart';
-import 'user.dart';
-import 'tag.dart';
+
 
 /// Represents a model on CivitAI.
 class Model {

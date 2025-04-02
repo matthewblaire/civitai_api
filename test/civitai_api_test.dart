@@ -1,8 +1,7 @@
+import 'dart:convert';
+
 import 'package:civitai_api/civitai_api.dart';
 import 'package:test/test.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'dart:async';
 
 import 'mock_http_client.dart';
 

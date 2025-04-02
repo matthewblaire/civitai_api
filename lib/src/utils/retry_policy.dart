@@ -53,7 +53,7 @@ class RetryPolicy {
   /// Returns the result of the function execution.
   /// Throws the last exception if all retry attempts fail.
   Future<T> execute<T>(Future<T> Function() fn) async {
-    int attempt = 0;
+    var attempt = 0;
     dynamic lastException;
 
     while (attempt <= config.maxRetries) {

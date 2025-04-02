@@ -81,8 +81,9 @@ class GetModelsParams extends PaginationParams {
     if (id != null) params['id'] = id.toString();
     if (username != null) params['username'] = username;
     if (nsfw != null) params['nsfw'] = nsfw!.toString();
-    if (primaryFileOnly != null)
+    if (primaryFileOnly != null) {
       params['primaryFileOnly'] = primaryFileOnly.toString();
+    }
     if (favorites != null) params['favorites'] = favorites.toString();
     if (hidden != null) params['hidden'] = hidden.toString();
 
@@ -101,12 +102,14 @@ class GetModelsParams extends PaginationParams {
       params['tags'] = tags!.map((id) => id.toString()).join(',');
     }
 
-    if (browsingLevel != null)
+    if (browsingLevel != null) {
       params['browsingLevel'] = browsingLevel.toString();
+    }
     if (earlyAccess != null) params['earlyAccess'] = earlyAccess.toString();
     if (query != null) params['query'] = query;
-    if (supportsGeneration != null)
+    if (supportsGeneration != null) {
       params['supportsGeneration'] = supportsGeneration.toString();
+    }
     if (archived != null) params['archived'] = archived.toString();
 
     return params;
