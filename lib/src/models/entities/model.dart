@@ -1,7 +1,6 @@
 import 'enums.dart';
 import 'model_version.dart';
 
-
 /// Represents a model on CivitAI.
 class Model {
   /// Unique identifier for the model.

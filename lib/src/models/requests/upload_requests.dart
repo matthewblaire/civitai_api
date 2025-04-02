@@ -1,5 +1,3 @@
-
-
 /// Parameters for creating a multipart upload.
 class CreateMultipartUploadParams {
   /// The MIME type of the file.

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+- formatted files
+
 
 ## 1.0.3
 - Made logging optional
