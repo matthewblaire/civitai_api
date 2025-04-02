@@ -10,7 +10,7 @@ class GetModelsParams extends PaginationParams {
   final String? username;
 
   /// Filter by NSFW level.
-  final NsfwLevel? nsfw;
+  final bool? nsfw;
 
   /// Only include primary files.
   final bool? primaryFileOnly;
@@ -80,7 +80,7 @@ class GetModelsParams extends PaginationParams {
 
     if (id != null) params['id'] = id.toString();
     if (username != null) params['username'] = username;
-    if (nsfw != null) params['nsfw'] = nsfw!.toInt().toString();
+    if (nsfw != null) params['nsfw'] = nsfw!.toString();
     if (primaryFileOnly != null)
       params['primaryFileOnly'] = primaryFileOnly.toString();
     if (favorites != null) params['favorites'] = favorites.toString();

@@ -6,7 +6,7 @@ import '../entities/enums.dart';
 /// Parameters for retrieving a list of images.
 class GetImagesParams extends PaginationParams {
   /// Filter by NSFW level.
-  final NsfwLevel? nsfw;
+  final bool? nsfw;
 
   /// Browsing level for filtering NSFW content.
   final int? browsingLevel;

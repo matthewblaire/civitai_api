@@ -11,10 +11,10 @@ void main() async {
     print('Fetching popular Stable Diffusion models...');
     final modelsResponse = await civitai.models.getModels(
       GetModelsParams(
-        limit: 5,
+        limit: 15,
         sort: ModelSort.mostDownloaded,
         types: [ModelType.lora],
-        nsfw: NsfwLevel.xxx,
+        nsfw: false,
       ),
     );
 
@@ -39,7 +39,7 @@ void main() async {
         GetImagesParams(
             modelVersionId: firstModel.modelVersions.first.id,
             limit: 3,
-            nsfw: NsfwLevel.xxx),
+            nsfw: true),
       );
 
       print('Found ${imagesResponse.items.length} images:');
