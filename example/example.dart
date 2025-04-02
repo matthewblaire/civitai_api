@@ -4,7 +4,7 @@ import 'package:civitai_api/civitai_api.dart';
 // to browse models, search for specific ones, and view images.
 void main() async {
   // Create a client (with optional API key for authenticated endpoints)
-  final civitai = CivitaiApi(apiKey: 'YOUR_API_KEY');
+  final civitai = CivitaiApi(apiKey: '6c2f0a9acebfd56a951c9e6276a08133');
 
   try {
     // Example 1: Fetch popular models
@@ -14,7 +14,7 @@ void main() async {
         limit: 5,
         sort: ModelSort.mostDownloaded,
         types: [ModelType.checkpoint],
-        nsfw: false,
+        nsfw: true,
       ),
     );
 
