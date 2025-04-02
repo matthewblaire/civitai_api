@@ -1,7 +1,11 @@
 # Changelog
 
 
-## 1.0.1
+## 1.0.3
+- Made logging optional
+
+
+## 1.0.2
 Trying to get a perfect score:
 - removed dangling comments
 

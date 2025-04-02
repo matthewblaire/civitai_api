@@ -38,8 +38,11 @@ class ApiClient {
   /// Request timeout duration.
   final Duration timeout;
 
+  final bool bEnableLogging;
+
   /// Creates a new API client instance.
   ApiClient({
+    required this.bEnableLogging,
     required this.baseUrl,
     required this.httpClient,
     this.authConfig,
@@ -64,11 +67,16 @@ class ApiClient {
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
-    print(uri.toString());
+    if (bEnableLogging) {
+      print(uri.toString());
+    }
 
     try {
       final response =
           await httpClient.get(uri, headers: headers).timeout(timeout);
+      if (bEnableLogging) {
+        print(response.body);
+      }
       return _handleResponse(response);
     } on TimeoutException {
       throw CivitaiTimeoutException(

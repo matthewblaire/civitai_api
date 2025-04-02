@@ -29,6 +29,9 @@ class CivitaiApi {
   /// Request timeout duration.
   final Duration timeout;
 
+  // Whether to log URLs and responses
+  final bool bEnableLogging;
+
   late final ModelsRepository _modelsRepository;
   late final ModelVersionsRepository _modelVersionsRepository;
   late final ImagesRepository _imagesRepository;
@@ -55,6 +58,7 @@ class CivitaiApi {
   CivitaiApi({
     String? apiKey,
     this.authConfig,
+    this.bEnableLogging = false,
     this.baseUrl = 'https://civitai.com/api',
     http.Client? httpClient,
     this.followRedirects = true,
@@ -65,6 +69,7 @@ class CivitaiApi {
         authConfig ?? (apiKey != null ? AuthConfig.apiKey(apiKey) : null);
 
     final apiClient = ApiClient(
+      bEnableLogging: bEnableLogging,
       baseUrl: baseUrl,
       httpClient: _httpClient,
       authConfig: effectiveAuthConfig,
