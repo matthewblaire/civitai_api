@@ -13,8 +13,8 @@ void main() async {
       GetModelsParams(
         limit: 5,
         sort: ModelSort.mostDownloaded,
-        types: [ModelType.checkpoint],
-        nsfw: true,
+        types: [ModelType.lora],
+        nsfw: NsfwLevel.xxx,
       ),
     );
 
@@ -37,9 +37,9 @@ void main() async {
 
       final imagesResponse = await civitai.images.getImages(
         GetImagesParams(
-          modelId: firstModel.id,
-          limit: 3,
-        ),
+            modelVersionId: firstModel.modelVersions.first.id,
+            limit: 3,
+            nsfw: NsfwLevel.xxx),
       );
 
       print('Found ${imagesResponse.items.length} images:');

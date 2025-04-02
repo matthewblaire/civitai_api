@@ -63,6 +63,8 @@ class ApiClient {
     final uri = _buildUri(endpoint, queryParams);
     final headers = _buildHeaders(requiresAuth);
 
+    print(uri.toString());
+
     try {
       final response =
           await httpClient.get(uri, headers: headers).timeout(timeout);

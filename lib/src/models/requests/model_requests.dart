@@ -9,8 +9,8 @@ class GetModelsParams extends PaginationParams {
   /// Filter by creator username.
   final String? username;
 
-  /// Include NSFW content.
-  final bool? nsfw;
+  /// Filter by NSFW level.
+  final NsfwLevel? nsfw;
 
   /// Only include primary files.
   final bool? primaryFileOnly;
@@ -45,6 +45,12 @@ class GetModelsParams extends PaginationParams {
   /// Filter by search query.
   final String? query;
 
+  /// Only include models that support on-site generation.
+  final bool? supportsGeneration;
+
+  /// Include models with archived status.
+  final bool? archived;
+
   /// Creates parameters for retrieving a list of models.
   const GetModelsParams({
     super.limit,
@@ -64,18 +70,21 @@ class GetModelsParams extends PaginationParams {
     this.browsingLevel,
     this.earlyAccess,
     this.query,
+    this.supportsGeneration,
+    this.archived,
   });
 
   @override
   Map<String, dynamic> toQueryParameters() {
     final params = super.toQueryParameters();
 
-    if (id != null) params['id'] = id;
+    if (id != null) params['id'] = id.toString();
     if (username != null) params['username'] = username;
-    if (nsfw != null) params['nsfw'] = nsfw;
-    if (primaryFileOnly != null) params['primaryFileOnly'] = primaryFileOnly;
-    if (favorites != null) params['favorites'] = favorites;
-    if (hidden != null) params['hidden'] = hidden;
+    if (nsfw != null) params['nsfw'] = nsfw!.toInt().toString();
+    if (primaryFileOnly != null)
+      params['primaryFileOnly'] = primaryFileOnly.toString();
+    if (favorites != null) params['favorites'] = favorites.toString();
+    if (hidden != null) params['hidden'] = hidden.toString();
 
     if (types != null && types!.isNotEmpty) {
       params['types'] = types!.map((t) => t.toJson()).join(',');
@@ -89,12 +98,56 @@ class GetModelsParams extends PaginationParams {
     if (period != null) params['period'] = period!.toJson();
 
     if (tags != null && tags!.isNotEmpty) {
-      params['tags'] = tags!.join(',');
+      params['tags'] = tags!.map((id) => id.toString()).join(',');
     }
 
-    if (browsingLevel != null) params['browsingLevel'] = browsingLevel;
-    if (earlyAccess != null) params['earlyAccess'] = earlyAccess;
+    if (browsingLevel != null)
+      params['browsingLevel'] = browsingLevel.toString();
+    if (earlyAccess != null) params['earlyAccess'] = earlyAccess.toString();
     if (query != null) params['query'] = query;
+    if (supportsGeneration != null)
+      params['supportsGeneration'] = supportsGeneration.toString();
+    if (archived != null) params['archived'] = archived.toString();
+
+    return params;
+  }
+}
+
+/// Parameters for retrieving a model by ID.
+class GetModelByIdParams {
+  /// The ID of the model to retrieve.
+  final int id;
+
+  /// Creates parameters for retrieving a model by ID.
+  const GetModelByIdParams({
+    required this.id,
+  });
+
+  /// Converts these parameters to a map for use in query parameters.
+  Map<String, dynamic> toQueryParameters() {
+    return <String, dynamic>{};
+  }
+}
+
+/// Parameters for retrieving generation details for a model version.
+class GetModelVersionGenerationDetailsParams {
+  /// The ID of the model version.
+  final int id;
+
+  /// The epoch number for training models.
+  final int? epoch;
+
+  /// Creates parameters for retrieving generation details.
+  const GetModelVersionGenerationDetailsParams({
+    required this.id,
+    this.epoch,
+  });
+
+  /// Converts these parameters to a map for use in query parameters.
+  Map<String, dynamic> toQueryParameters() {
+    final params = <String, dynamic>{};
+
+    if (epoch != null) params['epoch'] = epoch.toString();
 
     return params;
   }

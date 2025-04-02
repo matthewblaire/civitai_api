@@ -1,3 +1,5 @@
+import 'package:civitai_api/civitai_api.dart';
+
 import '../../utils/pagination.dart';
 import '../entities/enums.dart';
 
@@ -74,19 +76,25 @@ class GetImagesParams extends PaginationParams {
   Map<String, dynamic> toQueryParameters() {
     final params = super.toQueryParameters();
 
-    if (nsfw != null) params['nsfw'] = nsfw!.toJson();
-    if (browsingLevel != null) params['browsingLevel'] = browsingLevel;
+    // NSFW should be sent as an integer value
+    if (nsfw != null) params['nsfw'] = nsfw!.toString();
+    if (browsingLevel != null) {
+      params['browsingLevel'] = browsingLevel.toString();
+    }
 
     if (tags != null && tags!.isNotEmpty) {
       params['tags'] = tags!.join(',');
     }
 
-    if (postId != null) params['postId'] = postId;
-    if (modelId != null) params['modelId'] = modelId;
-    if (modelVersionId != null) params['modelVersionId'] = modelVersionId;
-    if (imageId != null) params['imageId'] = imageId;
+    if (postId != null) params['postId'] = postId.toString();
+    if (modelId != null) {
+      params['modelId'] = modelId.toString();
+    }
+    if (modelVersionId != null)
+      params['modelVersionId'] = modelVersionId.toString();
+    if (imageId != null) params['imageId'] = imageId.toString();
     if (username != null) params['username'] = username;
-    if (userId != null) params['userId'] = userId;
+    if (userId != null) params['userId'] = userId.toString();
     if (period != null) params['period'] = period!.toJson();
     if (sort != null) params['sort'] = sort!.toJson();
     if (type != null) params['type'] = type!.toJson();
@@ -95,7 +103,7 @@ class GetImagesParams extends PaginationParams {
       params['baseModels'] = baseModels!.map((bm) => bm.toJson()).join(',');
     }
 
-    if (withMeta != null) params['withMeta'] = withMeta;
+    if (withMeta != null) params['withMeta'] = withMeta.toString();
     if (query != null) params['query'] = query;
 
     return params;

@@ -6,19 +6,19 @@ class GetModelVersionByHashParams {
   final String hash;
 
   /// The type of hash used.
-  final String? hashType;
+  final ModelHashType hashType;
 
   /// Creates parameters for retrieving a model version by hash.
   const GetModelVersionByHashParams({
     required this.hash,
-    this.hashType,
+    this.hashType = ModelHashType.sha256,
   });
 
   /// Converts these parameters to a map for use in query parameters.
   Map<String, dynamic> toQueryParameters() {
-    final params = <String, dynamic>{};
-
-    if (hashType != null) params['hashType'] = hashType;
+    final params = <String, dynamic>{
+      'hashType': hashType.toJson(),
+    };
 
     return params;
   }
@@ -30,22 +30,25 @@ class GetModelVersionsByHashIdsParams {
   final List<String> hashes;
 
   /// The type of hash used.
-  final String? hashType;
+  final ModelHashType hashType;
 
   /// Creates parameters for retrieving model versions by hash IDs.
   const GetModelVersionsByHashIdsParams({
     required this.hashes,
-    this.hashType,
+    this.hashType = ModelHashType.sha256,
   });
 
   /// Converts these parameters to a map for use in query parameters.
   Map<String, dynamic> toQueryParameters() {
     final params = <String, dynamic>{
-      'hashes': hashes.join(','),
+      'hashType': hashType.toJson(),
     };
 
-    if (hashType != null) params['hashType'] = hashType;
-
     return params;
+  }
+
+  /// Converts this object to JSON for request body.
+  List<String> toRequestBody() {
+    return hashes.map((hash) => hash.toUpperCase()).toList();
   }
 }
