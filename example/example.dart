@@ -1,4 +1,4 @@
-import 'package:civitai_api/civitai_api.dart';
+import 'package:civitai_client/civitai_client.dart';
 
 // This example demonstrates how to use the CivitAI API client
 // to browse models, search for specific ones, and view images.

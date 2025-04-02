@@ -1,5 +1,4 @@
-import 'package:civitai_api/civitai_api.dart';
-
+import 'package:civitai_client/civitai_client.dart';
 
 /// Parameters for retrieving a list of images.
 class GetImagesParams extends PaginationParams {

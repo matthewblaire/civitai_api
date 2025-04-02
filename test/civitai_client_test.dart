@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:civitai_api/civitai_api.dart';
+import 'package:civitai_client/civitai_client.dart';
 import 'package:test/test.dart';
 
 import 'mock_http_client.dart';
