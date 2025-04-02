@@ -21,7 +21,7 @@ dependencies:
 ## Quick Start
 
 ```dart
-import 'package:civitai_api/civitai_api.dart';
+import 'package:civitai_client/civitai_client.dart';
 
 void main() async {
   // Create a client (with optional API key for authenticated endpoints)
@@ -163,7 +163,7 @@ final civitai = CivitaiApi(
 Configure retry behavior for transient errors:
 
 ```dart
-import 'package:civitai_api/civitai_api.dart';
+import 'package:civitai_client/civitai_client.dart';
 
 final retryConfig = RetryConfig(
   maxRetries: 5,
