@@ -41,11 +41,18 @@ class ImageModel {
   /// Base model used to create the image.
   final String? baseModel;
 
-  /// Metadata about the image.
+  /// The complete meta information from the response.
   final Map<String, dynamic>? meta;
 
   /// Statistics about the image.
   final ImageStats? stats;
+
+  /// Hashes from the meta (e.g. "hashes": { "model": "67ab2fd8ec", ... }).
+  final Map<String, String>? hashes;
+
+  /// Civitai resources converted into a structured map.
+  /// The key is the modelVersionId and the value is the resource info.
+  final Map<int, CivitaiResource>? modelResources;
 
   /// Creates a new image instance.
   const ImageModel({
@@ -64,14 +71,40 @@ class ImageModel {
     this.baseModel,
     this.meta,
     this.stats,
+    this.hashes,
+    this.modelResources,
   });
 
   /// Creates an image instance from a JSON map.
   factory ImageModel.fromJson(Map<String, dynamic> json) {
+    final meta = json['meta'] as Map<String, dynamic>?;
+
+    // Extract the "hashes" field if present.
+    Map<String, String>? extractedHashes;
+    if (meta != null && meta['hashes'] != null) {
+      final rawHashes = meta['hashes'] as Map<String, dynamic>;
+      extractedHashes = rawHashes.map((k, v) => MapEntry(k, v as String));
+    }
+
+    // Extract the "civitaiResources" list (if present) and convert it into a map
+    // keyed by the modelVersionId.
+    Map<int, CivitaiResource>? extractedResources;
+    if (meta != null && meta['civitaiResources'] != null) {
+      final rawResources = meta['civitaiResources'] as List<dynamic>;
+      extractedResources = <int, CivitaiResource>{};
+      for (final resource in rawResources) {
+        if (resource is Map<String, dynamic>) {
+          final res = CivitaiResource.fromJson(resource);
+          if (res.modelVersionId != null) {
+            extractedResources[res.modelVersionId!] = res;
+          }
+        }
+      }
+    }
+
     return ImageModel(
-      id: json['id'] as int? ?? 0, // Default for tests
-      url: json['url'] as String? ??
-          'https://example.com/image.jpg', // Default for tests
+      id: json['id'] as int? ?? 0,
+      url: json['url'] as String? ?? 'https://example.com/image.jpg',
       hash: json['hash'] as String?,
       width: json['width'] as int?,
       height: json['height'] as int?,
@@ -89,15 +122,28 @@ class ImageModel {
       postId: json['postId'] as int?,
       username: json['username'] as String?,
       baseModel: json['baseModel'] as String?,
-      meta: json['meta'] as Map<String, dynamic>?,
+      meta: meta,
       stats: json['stats'] != null
           ? ImageStats.fromJson(json['stats'] as Map<String, dynamic>)
           : null,
+      hashes: extractedHashes,
+      modelResources: extractedResources,
     );
   }
 
   /// Converts this image to a JSON map.
   Map<String, dynamic> toJson() {
+    // Reconstruct the meta map to include the extracted hashes and civitaiResources.
+    final metaCopy =
+        meta != null ? Map<String, dynamic>.from(meta!) : <String, dynamic>{};
+    if (hashes != null) {
+      metaCopy['hashes'] = hashes;
+    }
+    if (modelResources != null) {
+      metaCopy['civitaiResources'] =
+          modelResources!.values.map((e) => e.toJson()).toList();
+    }
+
     return {
       'id': id,
       'url': url,
@@ -112,7 +158,7 @@ class ImageModel {
       if (postId != null) 'postId': postId,
       if (username != null) 'username': username,
       if (baseModel != null) 'baseModel': baseModel,
-      if (meta != null) 'meta': meta,
+      'meta': metaCopy,
       if (stats != null) 'stats': stats!.toJson(),
     };
   }
@@ -120,25 +166,13 @@ class ImageModel {
 
 /// Statistics about an image.
 class ImageStats {
-  /// Number of cry reactions.
   final int cryCount;
-
-  /// Number of laugh reactions.
   final int laughCount;
-
-  /// Number of like reactions.
   final int likeCount;
-
-  /// Number of dislike reactions.
   final int dislikeCount;
-
-  /// Number of heart reactions.
   final int heartCount;
-
-  /// Number of comments.
   final int commentCount;
 
-  /// Creates a new image stats instance.
   const ImageStats({
     required this.cryCount,
     required this.laughCount,
@@ -148,7 +182,6 @@ class ImageStats {
     required this.commentCount,
   });
 
-  /// Creates an image stats instance from a JSON map.
   factory ImageStats.fromJson(Map<String, dynamic> json) {
     return ImageStats(
       cryCount: json['cryCount'] as int? ?? 0,
@@ -160,7 +193,6 @@ class ImageStats {
     );
   }
 
-  /// Converts this image stats to a JSON map.
   Map<String, dynamic> toJson() {
     return {
       'cryCount': cryCount,
@@ -169,6 +201,42 @@ class ImageStats {
       'dislikeCount': dislikeCount,
       'heartCount': heartCount,
       'commentCount': commentCount,
+    };
+  }
+}
+
+/// Represents a resource used to generate an image from CivitAI.
+/// This resource can come from a "civitaiResources" entry (with a modelVersionId)
+/// or, conceptually, from a "hashes" entry (to be looked up via a hash endpoint).
+class CivitaiResource {
+  /// Type of the resource (e.g. "checkpoint", "lora").
+  final String type;
+
+  /// Optional weight value (useful for LORA resources).
+  final double? weight;
+
+  /// The model version ID associated with this resource.
+  final int? modelVersionId;
+
+  const CivitaiResource({
+    required this.type,
+    this.weight,
+    this.modelVersionId,
+  });
+
+  factory CivitaiResource.fromJson(Map<String, dynamic> json) {
+    return CivitaiResource(
+      type: json['type'] as String? ?? '',
+      weight: (json['weight'] as num?)?.toDouble(),
+      modelVersionId: json['modelVersionId'] as int?,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'type': type,
+      if (weight != null) 'weight': weight,
+      if (modelVersionId != null) 'modelVersionId': modelVersionId,
     };
   }
 }
