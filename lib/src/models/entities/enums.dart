@@ -558,7 +558,20 @@ enum MetricTimeframe {
   day;
 
   /// Converts this enum value to a string for API requests.
-  String toJson() => toString().split('.').last;
+  String toJson() {
+    switch (this) {
+      case MetricTimeframe.allTime:
+        return 'AllTime';
+      case MetricTimeframe.day:
+        return 'Day';
+      case MetricTimeframe.week:
+        return 'Week';
+      case MetricTimeframe.month:
+        return 'Month';
+      case MetricTimeframe.year:
+        return 'Year';
+    }
+  }
 }
 
 /// File types for model files.

@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.5
+- fixed Metric Time Period strings
+
 ## 1.0.4
 - formatted files
 
