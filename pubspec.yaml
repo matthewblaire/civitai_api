@@ -1,6 +1,6 @@
 name: civitai_client
 description: A comprehensive, production-ready Dart client for the CivitAI API, providing complete type-safe access to all endpoints.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/matthewblaire/civitai_client
 repository: https://github.com/matthewblaire/civitai_client
 issue_tracker: https://github.com/matthewblaire/civitai_client/issues

@@ -2,6 +2,7 @@
 
 ## 1.0.5
 - fixed Metric Time Period strings
+- updated readme
 
 ## 1.0.4
 - formatted files
